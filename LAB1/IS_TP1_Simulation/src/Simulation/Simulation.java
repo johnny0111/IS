@@ -366,9 +366,19 @@ public class Simulation extends Thread {
     }
 
     private TMyPlace updateCowPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
+
         //TODO Lab 1:
-        //Update the position of the cow directly in this method
-        
+        //Update the position of the cow directly in this method      
+//        for (int i = 0; i < current; i++){
+//            for (int j = 0; j < myEnvironment[i].length; j++){
+//                TPlace place = myEnvironment[i][j] ;
+//                place.
+                
+//            }
+//        }
+        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
+            currentMyPlace.getPlace();
+        }
         //TODO Lab 2:
         //Serialize and deserialize TMyPlace Object to verify if the the methods from MessageManagement are properly working
         
