@@ -399,6 +399,12 @@ public class Simulation extends Thread {
     private TMyPlace updateWolfPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
         //TODO Lab 1:
         //Update the position of the wolf directly in this method
+        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
+            if (currentMyPlace.getPlace().get(i).isCow() && currentMyPlace.getPlace().get(i).isObstacle() == false){
+                currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
+                currentMyPlace.getPlace().get(0).setWolf(true);
+            }
+        }
         
         //TODO Lab 2:
         //Serialize and deserialize TMyPlace Object to verify if the the methods from MessageManagement are properly working
@@ -409,6 +415,6 @@ public class Simulation extends Thread {
         //Deserilize result string to TMyPlace
         //return received TMyPlace
         
-        return null;
+        return currentMyPlace;
     }
 }
