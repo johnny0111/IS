@@ -400,7 +400,7 @@ public class Simulation extends Thread {
         //TODO Lab 1:
         //Update the position of the wolf directly in this method
         for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
-            if (currentMyPlace.getPlace().get(i).isCow() && currentMyPlace.getPlace().get(i).isObstacle() == false){
+            if (currentMyPlace.getPlace().get(i).isCow() == true && currentMyPlace.getPlace().get(i).isObstacle() == false){
                 currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
                 currentMyPlace.getPlace().get(0).setWolf(true);
             }
