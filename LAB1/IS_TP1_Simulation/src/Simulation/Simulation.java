@@ -379,7 +379,7 @@ public class Simulation extends Thread {
 //            }
 //        }
         for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
-            if (currentMyPlace.getPlace().get(i).getGrass() > 0 && currentMyPlace.getPlace().get(i).isWolf() == false && currentMyPlace.getPlace().get(i).isWolf() == false){
+            if (currentMyPlace.getPlace().get(i).getGrass() > 0 && currentMyPlace.getPlace().get(i).isWolf() == false && currentMyPlace.getPlace().get(i).isObstacle() == false){
                 currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
                 currentMyPlace.getPlace().get(0).setCow(true);
                 currentMyPlace.getPlace().get(0).setGrass(currentMyPlace.getPlace().get(i).getGrass());
