@@ -13,6 +13,7 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -368,16 +369,21 @@ public class Simulation extends Thread {
     private TMyPlace updateCowPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
 
         //TODO Lab 1:
-        //Update the position of the cow directly in this method      
-//        for (int i = 0; i < current; i++){
-//            for (int j = 0; j < myEnvironment[i].length; j++){
-//                TPlace place = myEnvironment[i][j] ;
-//                place.
-                
+        //Update the position of the cow directly in this method    
+//        List<TPlace> place = currentMyPlace.getPlace();
+//        for (int i = 1; i < currentMyPlace.getPlace().size(); i++){
+//            if (place.get(i).getGrass() > 0 && place.get(i).isWolf() == false && place.get(i).isObstacle() == false){
+//                place.get(0).setPosition(place.get(i).getPosition());
+//                place.get(0).setCow(true);
+//                place.get(0).setGrass(place.get(i).getGrass());
 //            }
 //        }
         for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
-            currentMyPlace.getPlace();
+            if (currentMyPlace.getPlace().get(i).getGrass() > 0 && currentMyPlace.getPlace().get(i).isWolf() == false && currentMyPlace.getPlace().get(i).isWolf() == false){
+                currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
+                currentMyPlace.getPlace().get(0).setCow(true);
+                currentMyPlace.getPlace().get(0).setGrass(currentMyPlace.getPlace().get(i).getGrass());
+            }
         }
         //TODO Lab 2:
         //Serialize and deserialize TMyPlace Object to verify if the the methods from MessageManagement are properly working
@@ -387,8 +393,7 @@ public class Simulation extends Thread {
         //call server socket to update cow position
         //Deserilize result string to TMyPlace
         //return received TMyPlace
-      
-        return null;
+      return currentMyPlace;
     }
 
     private TMyPlace updateWolfPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
