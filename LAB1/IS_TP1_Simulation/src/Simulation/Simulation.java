@@ -14,7 +14,6 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -368,18 +367,7 @@ public class Simulation extends Thread {
     }
 
     private TMyPlace updateCowPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
-
-        //TODO Lab 1:
-        //Update the position of the cow directly in this method    
-//        List<TPlace> place = currentMyPlace.getPlace();
-//        for (int i = 1; i < currentMyPlace.getPlace().size(); i++){
-//            if (place.get(i).getGrass() > 0 && place.get(i).isWolf() == false && place.get(i).isObstacle() == false){
-//                place.get(0).setPosition(place.get(i).getPosition());
-//                place.get(0).setCow(true);
-//                place.get(0).setGrass(place.get(i).getGrass());
-//            }
-//        }
-        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
+       for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
             if (currentMyPlace.getPlace().get(i).getGrass() > 0 && currentMyPlace.getPlace().get(i).isWolf() == false && currentMyPlace.getPlace().get(i).isObstacle() == false){
                 currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
                 currentMyPlace.getPlace().get(0).setCow(true);
@@ -394,14 +382,13 @@ public class Simulation extends Thread {
         //call server socket to update cow position
         //Deserilize result string to TMyPlace
         //return received TMyPlace
-        String s = createPlaceStateContent( currentMyPlace);
-        System.out.println(s);
+        //String s = createPlaceStateContent( currentMyPlace);
+        System.out.println(currentMyPlace.getPlace().get(1).getPosition());
+        //System.out.println(s);
       return currentMyPlace;
     }
 
     private TMyPlace updateWolfPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
-        //TODO Lab 1:
-        //Update the position of the wolf directly in this method
         for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
             if (currentMyPlace.getPlace().get(i).isCow() == true && currentMyPlace.getPlace().get(i).isObstacle() == false){
                 currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
@@ -417,7 +404,7 @@ public class Simulation extends Thread {
         //call server socket to update wolf position
         //Deserilize result string to TMyPlace
         //return received TMyPlace
-        
+
         return currentMyPlace;
     }
 }
