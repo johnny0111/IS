@@ -6,6 +6,7 @@
 package Simulation;
 
 import Common.MessageManagement;
+import static Common.MessageManagement.createPlaceStateContent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -393,6 +394,8 @@ public class Simulation extends Thread {
         //call server socket to update cow position
         //Deserilize result string to TMyPlace
         //return received TMyPlace
+        String s = createPlaceStateContent( currentMyPlace);
+        System.out.println(s);
       return currentMyPlace;
     }
 

@@ -23,8 +23,21 @@ public class MessageManagement {
     public static String createPlaceStateContent(TMyPlace myPlace) throws JAXBException {
         //TODO Lab 2:
         //Serealize TMyPlace object to String using JAXB
+        ObjectFactory myPlaceXml = new ObjectFactory();
+        JAXBElement<TMyPlace> xml = myPlaceXml.createMyPlace(myPlace);
         
-        return null;
+        JAXBContext context = JAXBContext.newInstance(TMyPlace.class);
+        
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
+        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");    
+        
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(xml, writer);
+        
+        return writer.toString();
+        
     }
 
     public static TMyPlace retrievePlaceStateObject(String content) throws JAXBException {
@@ -33,4 +46,5 @@ public class MessageManagement {
 
         return null;
     }
+    
 }
