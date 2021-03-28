@@ -21,6 +21,8 @@ import org.netbeans.xml.schema.updateschema.TMyPlace;
 public class MessageManagement {
 
     public static String createPlaceStateContent(TMyPlace myPlace) throws JAXBException {
+        //TODO Lab 2:
+        //Serealize TMyPlace object to String using JAXB
         ObjectFactory myPlaceXml = new ObjectFactory();
         JAXBElement<TMyPlace> xml = myPlaceXml.createMyPlace(myPlace);
         
@@ -37,7 +39,7 @@ public class MessageManagement {
         return writer.toString();
     }
 
-    public static TMyPlace retrievePlaceStateObject(String content) throws JAXBException {
+public static TMyPlace retrievePlaceStateObject(String content) throws JAXBException {
         //TODO Lab 2:
         //Deserealize a String to a TMyPlace object using JAXB
         JAXBContext jaxbContext;
