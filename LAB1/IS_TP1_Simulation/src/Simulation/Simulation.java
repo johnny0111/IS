@@ -410,7 +410,8 @@ public class Simulation extends Thread {
         //call server socket to update wolf position
         //Deserilize result string to TMyPlace
         //return received TMyPlace
-        Socket client = new Socket("192.168.1.1",4445);
+        try{
+                    Socket client = new Socket("192.168.1.1",4445);
         
         //escrever para o servidor
         OutputStream outToServer = client.getOutputStream();
@@ -423,6 +424,10 @@ public class Simulation extends Thread {
         currentMyPlace = retrievePlaceStateObject(in.readUTF());
         client.close();
         return currentMyPlace;
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }
 
