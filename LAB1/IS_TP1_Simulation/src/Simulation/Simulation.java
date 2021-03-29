@@ -383,9 +383,9 @@ public class Simulation extends Thread {
         //call server socket to update cow position
         //Deserilize result string to TMyPlace
         //return received TMyPlace
-        //String s = createPlaceStateContent( currentMyPlace);
-        System.out.println(currentMyPlace.getPlace().get(1).getPosition());
-        //System.out.println(s);
+        String s = createPlaceStateContent( currentMyPlace);
+        //System.out.println(currentMyPlace.getPlace().get(1).getPosition());
+        System.out.println(s);
       return currentMyPlace;
     }
 

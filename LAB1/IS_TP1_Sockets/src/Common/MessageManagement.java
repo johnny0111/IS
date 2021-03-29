@@ -21,16 +21,41 @@ import org.netbeans.xml.schema.updateschema.TMyPlace;
 public class MessageManagement {
 
     public static String createPlaceStateContent(TMyPlace myPlace) throws JAXBException {
-        //TODO - Copy your code from Lab 2 here
-        //Serealize TMyPlace object to String using JAXB
-
-        return null;
+        ObjectFactory myPlaceXml = new ObjectFactory();
+        JAXBElement<TMyPlace> xml = myPlaceXml.createMyPlace(myPlace);
+        
+        JAXBContext context = JAXBContext.newInstance(TMyPlace.class);
+        
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
+        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");    
+        
+        StringWriter writer = new StringWriter();
+        marshaller.marshal(xml, writer);
+        
+        return writer.toString();
     }
 
     public static TMyPlace retrievePlaceStateObject(String content) throws JAXBException {
-        //TODO - Copy your code from Lab 2 here
-        //Deserealize a String to a TMyPlace object using JAXB
+       JAXBContext jaxbContext;
+        try{
+            
+        jaxbContext = JAXBContext.newInstance(TMyPlace.class);              
+
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+        TMyPlace place = (TMyPlace) jaxbUnmarshaller.unmarshal(new StringReader(content));
         
-        return null;
+        return place;
+
+        }
+        catch (JAXBException e) 
+        {
+            e.printStackTrace();
+        }
+
+                return null;
+    
     }
 }
