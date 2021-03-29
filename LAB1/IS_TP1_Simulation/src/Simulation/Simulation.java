@@ -8,9 +8,14 @@ package Simulation;
 
 import Common.MessageManagement;
 import static Common.MessageManagement.createPlaceStateContent;
+import static Common.MessageManagement.retrievePlaceStateObject;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -368,13 +373,13 @@ public class Simulation extends Thread {
     }
 
     private TMyPlace updateCowPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
-       for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
-            if (currentMyPlace.getPlace().get(i).getGrass() > 0 && currentMyPlace.getPlace().get(i).isWolf() == false && currentMyPlace.getPlace().get(i).isObstacle() == false){
-                currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
-                currentMyPlace.getPlace().get(0).setCow(true);
-                currentMyPlace.getPlace().get(0).setGrass(currentMyPlace.getPlace().get(i).getGrass());
-            }
-        }
+//   for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
+//        if (currentMyPlace.getPlace().get(i).getGrass() > 0 && currentMyPlace.getPlace().get(i).isWolf() == false && currentMyPlace.getPlace().get(i).isObstacle() == false){
+//            currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
+//            currentMyPlace.getPlace().get(0).setCow(true);
+//            currentMyPlace.getPlace().get(0).setGrass(currentMyPlace.getPlace().get(i).getGrass());
+//        }
+//    }
         //TODO Lab 2:
         //Serialize and deserialize TMyPlace Object to verify if the the methods from MessageManagement are properly working
         
@@ -390,12 +395,12 @@ public class Simulation extends Thread {
     }
 
     private TMyPlace updateWolfPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
-        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
-            if (currentMyPlace.getPlace().get(i).isCow() == true && currentMyPlace.getPlace().get(i).isObstacle() == false){
-                currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
-                currentMyPlace.getPlace().get(0).setWolf(true);
-            }
-        }
+//        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
+//            if (currentMyPlace.getPlace().get(i).isCow() == true && currentMyPlace.getPlace().get(i).isObstacle() == false){
+//                currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
+//                currentMyPlace.getPlace().get(0).setWolf(true);
+//            }
+//        }
         
         //TODO Lab 2:
         //Serialize and deserialize TMyPlace Object to verify if the the methods from MessageManagement are properly working
@@ -405,6 +410,18 @@ public class Simulation extends Thread {
         //call server socket to update wolf position
         //Deserilize result string to TMyPlace
         //return received TMyPlace
+        Socket client = new Socket("192.168.1.1",4445);
+        
+        //escrever para o servidor
+        OutputStream outToServer = client.getOutputStream();
+        DataOutputStream out = new DataOutputStream(outToServer);
+        String s = createPlaceStateContent( currentMyPlace);
+        out.writeUTF(s);
+        //resposta do servidor
+        InputStream inFromServer = client.getInputStream();
+        DataInputStream in = new DataInputStream(inFromServer);
+        currentMyPlace = retrievePlaceStateObject(in.readUTF());
+        
 
         return currentMyPlace;
     }
