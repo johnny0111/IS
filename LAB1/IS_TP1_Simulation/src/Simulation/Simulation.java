@@ -388,10 +388,30 @@ public class Simulation extends Thread {
         //call server socket to update cow position
         //Deserilize result string to TMyPlace
         //return received TMyPlace
-        String s = createPlaceStateContent( currentMyPlace);
-        //System.out.println(currentMyPlace.getPlace().get(1).getPosition());
-        System.out.println(s);
-      return currentMyPlace;
+        Socket client = new Socket("localhost",4444);
+        //try{
+            
+
+            //escrever para o servidor
+            OutputStream outToServer = client.getOutputStream();
+            //DataOutputStream out = new DataOutputStream(outToServer);
+            PrintStream out = new PrintStream(outToServer);
+            String s = createPlaceStateContent( currentMyPlace);
+            //out.writeUTF(s);
+            out.println(s);
+            //resposta do servidor
+            InputStream inFromServer = client.getInputStream();
+            DataInputStream in = new DataInputStream(inFromServer);
+            currentMyPlace = retrievePlaceStateObject(in.readUTF());
+            System.out.println(currentMyPlace.getPlace().get(0).getPosition().getXx());
+            //client.close();
+            return currentMyPlace;
+       // } catch(IOException e){
+       //     System.out.println("fail cow");
+        //  e.printStackTrace();
+         // return currentMyPlace;
+    //}
+       
     }
 
     private TMyPlace updateWolfPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
@@ -408,26 +428,30 @@ public class Simulation extends Thread {
         //TODO Lab 3 & 4:
         //Serialize TMyPlace object to string
         //call server socket to update wolf position
-        //Deserilize result string to TMyPlace
+        //Deserilize res ult string to TMyPlace
         //return received TMyPlace
+         Socket client = new Socket("localhost",4445);
         try{
-                    Socket client = new Socket("192.168.1.1",4445);
-        
-        //escrever para o servidor
-        OutputStream outToServer = client.getOutputStream();
-        DataOutputStream out = new DataOutputStream(outToServer);
-        String s = createPlaceStateContent( currentMyPlace);
-        out.writeUTF(s);
-        //resposta do servidor
-        InputStream inFromServer = client.getInputStream();
-        DataInputStream in = new DataInputStream(inFromServer);
-        currentMyPlace = retrievePlaceStateObject(in.readUTF());
-        client.close();
-        return currentMyPlace;
+           
+
+            //escrever para o servidor
+            OutputStream outToServer = client.getOutputStream();
+            DataOutputStream out = new DataOutputStream(outToServer);
+            String s = createPlaceStateContent( currentMyPlace);
+            out.writeUTF(s);
+            //resposta do servidor
+            InputStream inFromServer = client.getInputStream();
+            DataInputStream in = new DataInputStream(inFromServer);
+            currentMyPlace = retrievePlaceStateObject(in.readUTF());
+            //client.close();
+            return currentMyPlace;
         } catch(IOException e){
-            e.printStackTrace();
+            System.out.println("fail wolf");
+          e.printStackTrace();
+          return null;
         }
-        return null;
+        
+       
     }
 }
 

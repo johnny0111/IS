@@ -7,6 +7,7 @@ package is_tp1_serversocket;
 
 import Common.MessageManagement;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -45,8 +46,10 @@ public class IS_TP1_ServerSocketWolf {
         //Calculate new Cow position
         //Send new cow position to the client (Simulation)
 
-
+        try{
+            System.out.println("success wolf server");
         ServerSocket serverSocket = new ServerSocket(portServer);
+        //while(true)
         Socket client = serverSocket.accept();
             
         InputStream inputToServer = client.getInputStream();//input stream da socket
@@ -75,6 +78,10 @@ public class IS_TP1_ServerSocketWolf {
         
         client.close();
         serverSocket.close();
+        }catch(IOException e){
+            System.out.println("fail wolf server");
+          e.printStackTrace();
+        }
 
     }
 

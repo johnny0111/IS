@@ -27,9 +27,9 @@ public class MessageManagement {
         JAXBContext context = JAXBContext.newInstance(TMyPlace.class);
         
         Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
-        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");    
+//        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+//        marshaller.setProperty(Marshaller.JAXB_FRAGMENT, false);
+//        marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");    
         
         StringWriter writer = new StringWriter();
         marshaller.marshal(xml, writer);
@@ -41,7 +41,7 @@ public class MessageManagement {
        JAXBContext jaxbContext;
         try{
             
-        jaxbContext = JAXBContext.newInstance(TMyPlace.class);              
+        jaxbContext = JAXBContext.newInstance("org.netbeans.xml.schema.updateschema");              
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
@@ -53,6 +53,7 @@ public class MessageManagement {
         catch (JAXBException e) 
         {
             e.printStackTrace();
+            
         }
 
                 return null;
