@@ -42,9 +42,11 @@ public class IS_TP1_ServerSocketCow {
        try{
            
        System.out.println("success cow server");
-        ServerSocket serverSocket = new ServerSocket(portServer);
-        Socket client = serverSocket.accept();
-            
+       ServerSocket serverSocket = new ServerSocket(portServer);
+       Socket client = serverSocket.accept();
+        while(true){
+         //Socket client = serverSocket.accept();
+         //System.out.println("success cowwwwww");
         InputStream inputToServer = client.getInputStream();//input stream da socket
         OutputStream outputFromServer = client.getOutputStream();//output stream da socket
         
@@ -67,11 +69,13 @@ public class IS_TP1_ServerSocketCow {
     }
         
         String s = MessageManagement.createPlaceStateContent(place);//serialize
-        
+        //System.out.println("?????");
         writer.print(s);//sends to outputs stream
-        
-        client.close();
-        serverSocket.close();
+        //System.out.println(s);
+        //client.close();
+        //serverSocket.close();           
+        }
+
       }catch(IOException e){
             System.out.println("fail cow server");
           e.printStackTrace();

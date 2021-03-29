@@ -45,9 +45,9 @@ public class MessageManagement {
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-        TMyPlace place = (TMyPlace) jaxbUnmarshaller.unmarshal(new StringReader(content));
+        JAXBElement<TMyPlace> place = (JAXBElement<TMyPlace>)jaxbUnmarshaller.unmarshal(new StringReader(content));
         
-        return place;
+        return place.getValue();
 
         }
         catch (JAXBException e) 

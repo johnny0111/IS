@@ -389,7 +389,7 @@ public class Simulation extends Thread {
         //Deserilize result string to TMyPlace
         //return received TMyPlace
         Socket client = new Socket("localhost",4444);
-        //try{
+        try{
             
 
             //escrever para o servidor
@@ -406,11 +406,11 @@ public class Simulation extends Thread {
             System.out.println(currentMyPlace.getPlace().get(0).getPosition().getXx());
             //client.close();
             return currentMyPlace;
-       // } catch(IOException e){
-       //     System.out.println("fail cow");
-        //  e.printStackTrace();
-         // return currentMyPlace;
-    //}
+        } catch(IOException e){
+            System.out.println("fail cow");
+          e.printStackTrace();
+          return currentMyPlace;
+    }
        
     }
 

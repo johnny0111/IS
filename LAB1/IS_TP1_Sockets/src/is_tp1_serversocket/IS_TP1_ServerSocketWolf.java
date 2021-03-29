@@ -49,7 +49,7 @@ public class IS_TP1_ServerSocketWolf {
         try{
             System.out.println("success wolf server");
         ServerSocket serverSocket = new ServerSocket(portServer);
-        //while(true)
+        while(true){
         Socket client = serverSocket.accept();
             
         InputStream inputToServer = client.getInputStream();//input stream da socket
@@ -76,8 +76,10 @@ public class IS_TP1_ServerSocketWolf {
         
         writer.print(s);//sends to outputs stream
         
-        client.close();
-        serverSocket.close();
+        //client.close();
+        //serverSocket.close();            
+        }
+
         }catch(IOException e){
             System.out.println("fail wolf server");
           e.printStackTrace();

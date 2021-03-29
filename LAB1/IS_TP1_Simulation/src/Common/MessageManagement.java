@@ -49,9 +49,9 @@ public static TMyPlace retrievePlaceStateObject(String content) throws JAXBExcep
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-        TMyPlace place = (TMyPlace) jaxbUnmarshaller.unmarshal(new StringReader(content));
+        JAXBElement<TMyPlace> place = (JAXBElement<TMyPlace>)jaxbUnmarshaller.unmarshal(new StringReader(content));
         
-        return place;
+        return place.getValue();
 
 }
 catch (JAXBException e) 
