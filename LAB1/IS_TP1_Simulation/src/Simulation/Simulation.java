@@ -421,8 +421,7 @@ public class Simulation extends Thread {
         InputStream inFromServer = client.getInputStream();
         DataInputStream in = new DataInputStream(inFromServer);
         currentMyPlace = retrievePlaceStateObject(in.readUTF());
-        
-
+        client.close();
         return currentMyPlace;
     }
 }
