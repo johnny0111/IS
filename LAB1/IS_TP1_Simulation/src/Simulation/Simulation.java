@@ -17,6 +17,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -373,84 +375,51 @@ public class Simulation extends Thread {
     }
 
     private TMyPlace updateCowPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
-//   for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
-//        if (currentMyPlace.getPlace().get(i).getGrass() > 0 && currentMyPlace.getPlace().get(i).isWolf() == false && currentMyPlace.getPlace().get(i).isObstacle() == false){
-//            currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
-//            currentMyPlace.getPlace().get(0).setCow(true);
-//            currentMyPlace.getPlace().get(0).setGrass(currentMyPlace.getPlace().get(i).getGrass());
-//        }
-//    }
-        //TODO Lab 2:
-        //Serialize and deserialize TMyPlace Object to verify if the the methods from MessageManagement are properly working
         
-        //TODO Lab 3 & 4:
-        //Serialize TMyPlace object to string
-        //call server socket to update cow position
-        //Deserilize result string to TMyPlace
-        //return received TMyPlace
-        Socket client = new Socket("localhost",4444);
-        try{
-            
-
-            //escrever para o servidor
-            OutputStream outToServer = client.getOutputStream();
-            //DataOutputStream out = new DataOutputStream(outToServer);
-            PrintStream out = new PrintStream(outToServer);
-            String s = createPlaceStateContent( currentMyPlace);
-            //out.writeUTF(s);
-            out.println(s);
-            //resposta do servidor
-            InputStream inFromServer = client.getInputStream();
-            DataInputStream in = new DataInputStream(inFromServer);
-            currentMyPlace = retrievePlaceStateObject(in.readUTF());
-            System.out.println(currentMyPlace.getPlace().get(0).getPosition().getXx());
-            //client.close();
-            return currentMyPlace;
-        } catch(IOException e){
-            System.out.println("fail cow");
-          e.printStackTrace();
-          return currentMyPlace;
-    }
        
+        System.out.println("------client-----");
+        
+        InetAddress host = InetAddress.getLocalHost();
+        
+        Socket client = new Socket(host.getHostName(),4444);
+
+
+
+        System.out.println("entered client");
+
+        PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+        String s = createPlaceStateContent(currentMyPlace);
+        System.out.println("serialized message-client");
+
+
+        out.println(s);
+        //out.println();
+
+        System.out.println("sent message client");
+
+        String input = in.readLine();
+        System.out.println("recived message");
+
+        currentMyPlace = retrievePlaceStateObject(input);
+        System.out.println("deserialized message");
+        
+        client.close();
+
+       
+       return currentMyPlace;
     }
 
     private TMyPlace updateWolfPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
-//        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
-//            if (currentMyPlace.getPlace().get(i).isCow() == true && currentMyPlace.getPlace().get(i).isObstacle() == false){
-//                currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
-//                currentMyPlace.getPlace().get(0).setWolf(true);
-//            }
-//        }
-        
-        //TODO Lab 2:
-        //Serialize and deserialize TMyPlace Object to verify if the the methods from MessageManagement are properly working
-        
-        //TODO Lab 3 & 4:
-        //Serialize TMyPlace object to string
-        //call server socket to update wolf position
-        //Deserilize res ult string to TMyPlace
-        //return received TMyPlace
-         Socket client = new Socket("localhost",4445);
-        try{
-           
 
-            //escrever para o servidor
-            OutputStream outToServer = client.getOutputStream();
-            DataOutputStream out = new DataOutputStream(outToServer);
-            String s = createPlaceStateContent( currentMyPlace);
-            out.writeUTF(s);
-            //resposta do servidor
-            InputStream inFromServer = client.getInputStream();
-            DataInputStream in = new DataInputStream(inFromServer);
-            currentMyPlace = retrievePlaceStateObject(in.readUTF());
-            //client.close();
-            return currentMyPlace;
-        } catch(IOException e){
-            System.out.println("fail wolf");
-          e.printStackTrace();
-          return null;
-        }
-        
+        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
+                if (currentMyPlace.getPlace().get(i).isCow() == true && currentMyPlace.getPlace().get(i).isObstacle() == false){
+                    currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
+                    currentMyPlace.getPlace().get(0).setWolf(true);
+                }
+        }    
+        return currentMyPlace;  
        
     }
 }

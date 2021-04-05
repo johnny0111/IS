@@ -39,46 +39,52 @@ public class IS_TP1_ServerSocketCow {
     }
 
     public void run() throws Exception {
-       try{
-           
-       System.out.println("success cow server");
-       ServerSocket serverSocket = new ServerSocket(portServer);
-       Socket client = serverSocket.accept();
-        while(true){
-         //Socket client = serverSocket.accept();
-         //System.out.println("success cowwwwww");
-        InputStream inputToServer = client.getInputStream();//input stream da socket
-        OutputStream outputFromServer = client.getOutputStream();//output stream da socket
-        
-        PrintWriter writer = new PrintWriter(outputFromServer, true);//buffer para escrever para a socket
+        try{
+            ServerSocket serverSocket = new ServerSocket(portServer);
+            
+            while(true){
+            Socket client = serverSocket.accept();
 
-        InputStreamReader in = new InputStreamReader(inputToServer);
-        BufferedReader reader = new BufferedReader(in);//buffer de leitura
-        String line = reader.readLine();    // reads a line of text
-        
-        TMyPlace place = new TMyPlace();
-        
-        place = MessageManagement.retrievePlaceStateObject(line);//deserializa a mens
-        
-    for (int i = 0; i < place.getPlace().size(); i++){
-        if (place.getPlace().get(i).getGrass() > 0 && place.getPlace().get(i).isWolf() == false && place.getPlace().get(i).isObstacle() == false){
-            place.getPlace().get(0).setPosition(place.getPlace().get(i).getPosition());
-            place.getPlace().get(0).setCow(true);
-            place.getPlace().get(0).setGrass(place.getPlace().get(i).getGrass());
-        }
-    }
-        
-        String s = MessageManagement.createPlaceStateContent(place);//serialize
-        //System.out.println("?????");
-        writer.print(s);//sends to outputs stream
-        //System.out.println(s);
-        //client.close();
-        //serverSocket.close();           
-        }
+            PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            
+            
+               System.out.println("success cow server");    
+               
+               
+               System.out.println("ready to read line");
+               String input = in.readLine();//lê o input para uma string
+               
+               
+               System.out.println("read line"); 
+               TMyPlace place = MessageManagement.retrievePlaceStateObject(input);//deserializa a mens
+               
+               System.out.println("deserialized message"); 
+               
+               for (int i = 0; i < place.getPlace().size(); i++){
+                    if (place.getPlace().get(i).getGrass() > 0 && place.getPlace().get(i).isWolf() == false && place.getPlace().get(i).isObstacle() == false){
+                        place.getPlace().get(0).setPosition(place.getPlace().get(i).getPosition());
+                        place.getPlace().get(0).setCow(true);
+                        place.getPlace().get(0).setGrass(place.getPlace().get(i).getGrass());
+                    }
+                } 
+               
+               System.out.println("calculated place");
+               String s = MessageManagement.createPlaceStateContent(place);//serialize
+               
+               out.println(s);
+               //out.println();
+              
+               System.out.println("sent cow");  
+               client.close();
+                  
+            }
+            
+            
 
-      }catch(IOException e){
+        }catch(IOException e){
             System.out.println("fail cow server");
-          e.printStackTrace();
         }
+       
     }
 }

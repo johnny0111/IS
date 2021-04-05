@@ -48,37 +48,39 @@ public class IS_TP1_ServerSocketWolf {
 
         try{
             System.out.println("success wolf server");
-        ServerSocket serverSocket = new ServerSocket(portServer);
-        while(true){
-        Socket client = serverSocket.accept();
+            ServerSocket serverSocket = new ServerSocket(portServer);
+            Socket client = serverSocket.accept();
             
-        InputStream inputToServer = client.getInputStream();//input stream da socket
-        OutputStream outputFromServer = client.getOutputStream();//output stream da socket
-        
-        PrintWriter writer = new PrintWriter(outputFromServer, true);//buffer para escrever para a socket
+            while(true){
+            
 
-        InputStreamReader in = new InputStreamReader(inputToServer);
-        BufferedReader reader = new BufferedReader(in);//buffer de leitura
-        String line = reader.readLine();    // reads a line of text
-        
-        TMyPlace place = new TMyPlace();
-        
-        place = MessageManagement.retrievePlaceStateObject(line);//deserializa a mens
-        
-        for (int i = 0; i < place.getPlace().size(); i++){
-            if (place.getPlace().get(i).isCow() == true && place.getPlace().get(i).isObstacle() == false){
-                place.getPlace().get(0).setPosition(place.getPlace().get(i).getPosition());
-                place.getPlace().get(0).setWolf(true);
+            InputStream inputToServer = client.getInputStream();//input stream da socket
+            OutputStream outputFromServer = client.getOutputStream();//output stream da socket
+
+            PrintWriter writer = new PrintWriter(outputFromServer, true);//buffer para escrever para a socket
+
+            InputStreamReader in = new InputStreamReader(inputToServer);
+            BufferedReader reader = new BufferedReader(in);//buffer de leitura
+            String line = reader.readLine();    // reads a line of text
+
+            TMyPlace place = new TMyPlace();
+
+            place = MessageManagement.retrievePlaceStateObject(line);//deserializa a mens
+
+            for (int i = 0; i < place.getPlace().size(); i++){
+                if (place.getPlace().get(i).isCow() == true && place.getPlace().get(i).isObstacle() == false){
+                    place.getPlace().get(0).setPosition(place.getPlace().get(i).getPosition());
+                    place.getPlace().get(0).setWolf(true);
+                }
             }
-        }
-        
-        String s = MessageManagement.createPlaceStateContent(place);//serialize
-        
-        writer.print(s);//sends to outputs stream
-        
-        //client.close();
-        //serverSocket.close();            
-        }
+
+            String s = MessageManagement.createPlaceStateContent(place);//serialize
+
+            writer.print(s);//sends to outputs stream
+
+            //client.close();
+            //serverSocket.close();            
+            }
 
         }catch(IOException e){
             System.out.println("fail wolf server");

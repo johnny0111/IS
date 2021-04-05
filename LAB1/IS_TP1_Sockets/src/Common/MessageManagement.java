@@ -11,6 +11,7 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.stream.StreamSource;
 import org.netbeans.xml.schema.updateschema.ObjectFactory;
 import org.netbeans.xml.schema.updateschema.TMyPlace;
 
@@ -21,9 +22,12 @@ import org.netbeans.xml.schema.updateschema.TMyPlace;
 public class MessageManagement {
 
     public static String createPlaceStateContent(TMyPlace myPlace) throws JAXBException {
+        //TODO Lab 2:
+        //Serealize TMyPlace object to String using JAXB
         ObjectFactory myPlaceXml = new ObjectFactory();
         JAXBElement<TMyPlace> xml = myPlaceXml.createMyPlace(myPlace);
         
+      
         JAXBContext context = JAXBContext.newInstance(TMyPlace.class);
         
         Marshaller marshaller = context.createMarshaller();
@@ -38,25 +42,32 @@ public class MessageManagement {
     }
 
     public static TMyPlace retrievePlaceStateObject(String content) throws JAXBException {
-       JAXBContext jaxbContext;
-        try{
+            //TODO Lab 2:
+            //Deserealize a String to a TMyPlace object using JAXB
+            JAXBContext jaxbContext;
+           
             
-        jaxbContext = JAXBContext.newInstance("org.netbeans.xml.schema.updateschema");              
+            try{
 
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            //jaxbContext = JAXBContext.newInstance(TMyPlace.class);  
+            jaxbContext = JAXBContext.newInstance(TMyPlace.class);
 
-        JAXBElement<TMyPlace> place = (JAXBElement<TMyPlace>)jaxbUnmarshaller.unmarshal(new StringReader(content));
-        
-        return place.getValue();
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-        }
-        catch (JAXBException e) 
-        {
-            e.printStackTrace();
-            
-        }
+            StreamSource streamSource = new StreamSource(new StringReader(content));
 
+            JAXBElement<TMyPlace> place = jaxbUnmarshaller.unmarshal(streamSource, TMyPlace.class);
+
+            //JAXBElement<TMyPlace> place = (JAXBElement<TMyPlace>)jaxbUnmarshaller.unmarshal(new StringReader(content));
+            TMyPlace myPlace = (TMyPlace) place.getValue();
+
+            return myPlace;
+
+            }
+            catch (JAXBException e) {
                 return null;
-    
+            }
+
+           
     }
 }
