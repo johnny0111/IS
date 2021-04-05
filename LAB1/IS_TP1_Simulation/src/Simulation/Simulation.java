@@ -415,6 +415,7 @@ public class Simulation extends Thread {
     }
 
     private TMyPlace updateWolfPosition(TMyPlace currentMyPlace) throws JAXBException, IOException {
+<<<<<<< Updated upstream
 //        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
 //            if (currentMyPlace.getPlace().get(i).isCow() == true && currentMyPlace.getPlace().get(i).isObstacle() == false){
 //                currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
@@ -451,6 +452,50 @@ public class Simulation extends Thread {
           return null;
         }
         
+=======
+
+//        for (int i = 0; i < currentMyPlace.getPlace().size(); i++){
+//                if (currentMyPlace.getPlace().get(i).isCow() == true && currentMyPlace.getPlace().get(i).isObstacle() == false){
+//                    currentMyPlace.getPlace().get(0).setPosition(currentMyPlace.getPlace().get(i).getPosition());
+//                    currentMyPlace.getPlace().get(0).setWolf(true);
+//                }
+//        }    
+//        return currentMyPlace;  
+        
+       
+        System.out.println("------client-----");
+        
+        InetAddress host = InetAddress.getLocalHost();
+        
+        Socket client = new Socket(host.getHostName(),4445);
+
+
+
+        System.out.println("entered client");
+
+        PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+        String s = createPlaceStateContent(currentMyPlace);
+        System.out.println("serialized message-client");
+
+
+        out.println(s);
+        //out.println();
+
+        System.out.println("sent message client");
+
+        String input = in.readLine();
+        System.out.println("recived message");
+
+        currentMyPlace = retrievePlaceStateObject(input);
+        System.out.println("deserialized message");
+        
+        client.close();
+
+       
+       return currentMyPlace;
+>>>>>>> Stashed changes
        
     }
 }
