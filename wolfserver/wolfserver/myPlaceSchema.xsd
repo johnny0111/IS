@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" targetNamespace="http://xml.netbeans.org/schema/updateSchema" xmlns:mstns="http://xml.netbeans.org/schema/updateSchema" xmlns="http://xml.netbeans.org/schema/updateSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:complexType name="tMyPlace">
+    <xs:sequence>
+      <xs:element name="Place" type="mstns:tPlace" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tPlace">
+    <xs:sequence>
+      <xs:element name="Grass" type="xs:int" />
+      <xs:element name="Wolf" type="xs:boolean" />
+      <xs:element name="Cow" type="xs:boolean" />
+      <xs:element name="Dog" type="xs:boolean" />
+      <xs:element name="Obstacle" type="xs:boolean" />
+      <xs:element name="Entity" type="xs:string" />
+      <xs:element name="Stamina" type="xs:int" />
+      <xs:element name="Sex" type="xs:int" />
+      <xs:element name="Position" type="mstns:tPosition" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tPosition">
+    <xs:sequence>
+      <xs:element name="xx" type="xs:int" />
+      <xs:element name="yy" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MyPlace" type="mstns:tMyPlace" />
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="MyPlace" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
