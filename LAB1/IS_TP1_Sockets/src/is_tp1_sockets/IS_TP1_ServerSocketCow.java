@@ -60,7 +60,7 @@ public class IS_TP1_ServerSocketCow {
                     if (place.getPlace().get(i).getGrass() > 0 && place.getPlace().get(i).isWolf() == false && place.getPlace().get(i).isObstacle() == false){
                         place.getPlace().get(0).setPosition(place.getPlace().get(i).getPosition());
                         place.getPlace().get(0).setCow(true);
-                        place.getPlace().get(0).setGrass(place.getPlace().get(i).getGrass());
+                        place.getPlace().get(0).setGrass(place.getPlace().get(i).getGrass()-1);
                     }
                 } 
                

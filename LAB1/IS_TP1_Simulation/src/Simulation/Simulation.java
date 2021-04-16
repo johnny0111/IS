@@ -376,7 +376,7 @@ public class Simulation extends Thread {
         InetAddress host = InetAddress.getLocalHost();
         
         Socket client = new Socket(host.getHostName(),4444);
-
+        //Socket client = new Socket("localhost",4444);
 
 
         System.out.println("entered client");
@@ -418,8 +418,8 @@ public class Simulation extends Thread {
         
         InetAddress host = InetAddress.getLocalHost();
         
+        //Socket client = new Socket("localhost ",4445);
         Socket client = new Socket(host.getHostName(),4445);
-
 
 
         System.out.println("entered client");

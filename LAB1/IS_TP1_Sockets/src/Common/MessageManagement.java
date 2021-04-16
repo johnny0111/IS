@@ -63,7 +63,5 @@ public class MessageManagement {
             catch (JAXBException e) {
                 return null;
             }
-
-           
     }
 }

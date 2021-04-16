@@ -47,22 +47,22 @@ public partial class tMyPlace {
 public partial class tPlace {
     
     public int grassField;
-    
-    private bool wolfField;
-    
-    private bool cowField;
-    
-    private bool dogField;
-    
-    private bool obstacleField;
-    
-    private string entityField;
-    
-    private int staminaField;
-    
-    private int sexField;
-    
-    private tPosition[] positionField;
+
+    public bool wolfField;
+
+    public bool cowField;
+
+    public bool dogField;
+
+    public bool obstacleField;
+
+    public string entityField;
+
+    public int staminaField;
+
+    public int sexField;
+
+    public tPosition[] positionField;
     
     /// <remarks/>
     public int Grass {
