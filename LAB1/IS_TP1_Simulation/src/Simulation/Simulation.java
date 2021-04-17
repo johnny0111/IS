@@ -112,6 +112,7 @@ public class Simulation extends Thread {
             tPosition.setXx(posX);
             tPosition.setYy(posY);
             this.wolfList.put("Wolf_" + i, tPosition);
+            myEnvironment[posX][posY].setStamina(3);
         }
     }
 
@@ -135,6 +136,7 @@ public class Simulation extends Thread {
             TPosition tPosition = new TPosition();
             tPosition.setXx(posX);
             tPosition.setYy(posY);
+            myEnvironment[posX][posY].setStamina(5);
 
             this.cowList.put("Cow_" + CowID, tPosition);
             CowID++;
@@ -260,18 +262,32 @@ public class Simulation extends Thread {
                     //updateCowPosition
                     int lastX = this.cowList.get(cowName).getXx(); //Last position Xx
                     int lastY = this.cowList.get(cowName).getYy(); //Last position Yy
+                    
                     if (!(this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].isWolf() //New position without Wolf
                             && this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].getGrass() == 0) //With grass
                             && !this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].isObstacle() //Without obstacle
+                            && this.myEnvironment[lastX][lastY].getStamina() != 0
                             && !this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].isCow()) {  //Without cow
                         this.myEnvironment[lastX][lastY].setEntity(null); //Remove from last postion
                         this.myEnvironment[lastX][lastY].setCow(false); //Remove from last position
+                        
+                        this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].setStamina(this.myEnvironment[lastX][lastY].getStamina() - 1);//update stamina
+                        this.myEnvironment[lastX][lastY].setStamina(0);//remove stamina from last position
+                        
                         this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].setEntity(cowName); //Put in new position
                         this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].setCow(true); //Put in new position
                         this.cowList.get(cowName).setXx(myPlace.getPosition().getXx()); //Put in new position
                         this.cowList.get(cowName).setYy(myPlace.getPosition().getYy()); //Put in new position
+                    
+                            
+                            
                     } else {
                         if (this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].isWolf()) { //Wolf than eats a Cow
+                            this.myEnvironment[lastX][lastY].setEntity(null); //Remove from last position
+                            this.myEnvironment[lastX][lastY].setCow(false); //Remove from last position
+                            cowsToKill.add(cowName);//Add to the list to remove later
+                        }
+                        if (this.myEnvironment[lastX][lastY].getStamina() == 0) { //Without stamina in position
                             this.myEnvironment[lastX][lastY].setEntity(null); //Remove from last position
                             this.myEnvironment[lastX][lastY].setCow(false); //Remove from last position
                             cowsToKill.add(cowName);//Add to the list to remove later
@@ -319,6 +335,10 @@ public class Simulation extends Thread {
                             this.myEnvironment[lastX][lastY].setEntity(null);
                             this.myEnvironment[lastX][lastY].setWolf(false);
 
+                            this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].setStamina(this.myEnvironment[lastX][lastY].getStamina() - 1);//update stamina
+                            this.myEnvironment[lastX][lastY].setStamina(0);//remove stamina from last position
+                        
+                            
                             this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].setEntity(wolfName);
                             this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].setWolf(true);
                             this.wolfList.get(wolfName).setXx(myPlace.getPosition().getXx());
@@ -326,10 +346,27 @@ public class Simulation extends Thread {
 
                         } else {
                             if (this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].isWolf()) {
-                                //Wolf in the same position
+                                //Wolf in the same 
+                                if (this.myEnvironment[lastX][lastY].isWolf() == true) {//wolf in the last position
+                                    this.myEnvironment[lastX][lastY].setEntity(null); //Remove from last position
+                                    this.myEnvironment[lastX][lastY].setWolf(false);   //Remove from last position
+                                    wolfsToKill.add(wolfName);        //Add to the list to remove later
+                                }
+                                
                             }
                             if (this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].isObstacle()) {
                                 //Moving to obstacle
+                                if (this.myEnvironment[lastX][lastY].isWolf() == true) {//wolf in the last position
+                                    this.myEnvironment[lastX][lastY].setEntity(null); //Remove from last position
+                                    this.myEnvironment[lastX][lastY].setWolf(false);   //Remove from last position
+                                    wolfsToKill.add(wolfName);        //Add to the list to remove later
+                                }
+                                
+                            }
+                            if (this.myEnvironment[lastX][lastY].getStamina() == 0) { //Without stamina in position
+                                this.myEnvironment[lastX][lastY].setEntity(null); //Remove from last position
+                                this.myEnvironment[lastX][lastY].setWolf(false); //Remove from last position
+                                wolfsToKill.add(wolfName);//Add to the list to remove later
                             }
                             if (this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].isCow()) {
                                 String lastEntity = this.myEnvironment[myPlace.getPosition().getXx()][myPlace.getPosition().getYy()].getEntity(); //Entity of Cow in the new positin
