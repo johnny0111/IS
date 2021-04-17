@@ -24,3 +24,16 @@ C:\Users\irisp\Desktop\iris\FCT\5ºANO\IS\IS\wolf_server\obj\Debug\netcoreapp3.1
 C:\Users\irisp\Desktop\iris\FCT\5ºANO\IS\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.dll
 C:\Users\irisp\Desktop\iris\FCT\5ºANO\IS\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.pdb
 C:\Users\irisp\Desktop\iris\FCT\5ºANO\IS\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.genruntimeconfig.cache
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\bin\Debug\netcoreapp3.1\wolf_server.exe
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\bin\Debug\netcoreapp3.1\wolf_server.deps.json
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\bin\Debug\netcoreapp3.1\wolf_server.runtimeconfig.json
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\bin\Debug\netcoreapp3.1\wolf_server.runtimeconfig.dev.json
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\bin\Debug\netcoreapp3.1\wolf_server.dll
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\bin\Debug\netcoreapp3.1\wolf_server.pdb
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.csprojAssemblyReference.cache
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.AssemblyInfoInputs.cache
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.AssemblyInfo.cs
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.csproj.CoreCompileInputs.cache
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.dll
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.pdb
+D:\joaom\Documents\Mestrado\2º semestre\IS\wolf_server\obj\Debug\netcoreapp3.1\wolf_server.genruntimeconfig.cache

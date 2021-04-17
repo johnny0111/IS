@@ -40,6 +40,12 @@ public class StartWindow extends javax.swing.JFrame {
         jButtonStart = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jSlider1 = new javax.swing.JSlider();
+        jLabel5 = new javax.swing.JLabel();
+        jSpinnerDogs = new javax.swing.JSpinner();
+        jSpinnerStamina1 = new javax.swing.JSpinner();
+        jSpinnerStamina2 = new javax.swing.JSpinner();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,6 +74,12 @@ public class StartWindow extends javax.swing.JFrame {
         jSlider1.setMinorTickSpacing(250);
         jSlider1.setValue(1250);
 
+        jLabel5.setText("Number Of Dogs");
+
+        jLabel7.setText("Dogs And Wolfs Stamina");
+
+        jLabel8.setText("Cows Stamina");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,7 +87,7 @@ public class StartWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
                     .addComponent(jButtonStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -86,11 +98,23 @@ public class StartWindow extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSpinnerObstacles, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jSpinnerWolfs, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSpinnerDogs, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSpinnerStamina1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSpinnerStamina2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -102,21 +126,33 @@ public class StartWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jSpinnerCows, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jSpinnerWolfs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jSpinnerDogs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jSpinnerObstacles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerStamina1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jSpinnerStamina2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonStart, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
 
         pack();
@@ -129,14 +165,24 @@ public class StartWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Invalid Wolfs Number!!!!");
         } else if (Integer.parseInt(jSpinnerObstacles.getValue().toString()) < 0){
             JOptionPane.showMessageDialog(this, "Invalid Obstacles Number!!!!");
+        } else if (Integer.parseInt(jSpinnerDogs.getValue().toString()) < 0){
+            JOptionPane.showMessageDialog(this, "Invalid Dogs Number!!!!");
+        } else if(Integer.parseInt(jSpinnerStamina1.getValue().toString()) < 0 || Integer.parseInt(jSpinnerStamina1.getValue().toString()) > 30) {
+            JOptionPane.showMessageDialog(this, "Invalid Stamina Number!!!! Chose between 0 and 30!!!");
+        } else if(Integer.parseInt(jSpinnerStamina2.getValue().toString()) < 0 || Integer.parseInt(jSpinnerStamina2.getValue().toString()) > 30) {
+            JOptionPane.showMessageDialog(this, "Invalid Stamina Number!!!! Chose between 0 and 30!!!");
         } else if ((Integer.parseInt(jSpinnerCows.getValue().toString())+
                 Integer.parseInt(jSpinnerWolfs.getValue().toString())+
+                Integer.parseInt(jSpinnerDogs.getValue().toString())+
                 Integer.parseInt(jSpinnerObstacles.getValue().toString())) > 225){
             JOptionPane.showMessageDialog(this, "Too Many Pieces in the Simulation!!!,\nPlease Choose Less Than 225");
         } else {
             Simulation myEnvironment = new Simulation(Integer.parseInt(jSpinnerCows.getValue().toString()),
                     Integer.parseInt(jSpinnerWolfs.getValue().toString()),
+                    Integer.parseInt(jSpinnerDogs.getValue().toString()),
                     Integer.parseInt(jSpinnerObstacles.getValue().toString()),
+                    Integer.parseInt(jSpinnerStamina1.getValue().toString()),
+                    Integer.parseInt(jSpinnerStamina2.getValue().toString()),
                     jSlider1.getValue());
             myEnvironment.start();
             this.setVisible(false);
@@ -184,10 +230,16 @@ public class StartWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JSpinner jSpinnerCows;
+    private javax.swing.JSpinner jSpinnerDogs;
     private javax.swing.JSpinner jSpinnerObstacles;
+    private javax.swing.JSpinner jSpinnerStamina1;
+    private javax.swing.JSpinner jSpinnerStamina2;
     private javax.swing.JSpinner jSpinnerWolfs;
     // End of variables declaration//GEN-END:variables
 }

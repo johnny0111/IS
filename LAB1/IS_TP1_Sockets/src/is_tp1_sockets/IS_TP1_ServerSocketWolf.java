@@ -104,7 +104,7 @@ public class IS_TP1_ServerSocketWolf {
                System.out.println("deserialized message"); 
                
             for (int i = 0; i < place.getPlace().size(); i++){
-                if (place.getPlace().get(i).isCow() == true && place.getPlace().get(i).isObstacle() == false){
+                if (place.getPlace().get(i).isCow() == true && place.getPlace().get(i).isObstacle() == false && place.getPlace().get(i).isDog() == false){
                     place.getPlace().get(0).setPosition(place.getPlace().get(i).getPosition());
                     place.getPlace().get(0).setWolf(true);
                 }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\irisp\\Desktop\\iris\\FCT\\5ºANO\\IS\\IS\\wolf_server\\wolf_server.csproj": {}
+    "D:\\joaom\\Documents\\Mestrado\\2º semestre\\IS\\wolf_server\\wolf_server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\irisp\\Desktop\\iris\\FCT\\5ºANO\\IS\\IS\\wolf_server\\wolf_server.csproj": {
+    "D:\\joaom\\Documents\\Mestrado\\2º semestre\\IS\\wolf_server\\wolf_server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\irisp\\Desktop\\iris\\FCT\\5ºANO\\IS\\IS\\wolf_server\\wolf_server.csproj",
+        "projectUniqueName": "D:\\joaom\\Documents\\Mestrado\\2º semestre\\IS\\wolf_server\\wolf_server.csproj",
         "projectName": "wolf_server",
-        "projectPath": "C:\\Users\\irisp\\Desktop\\iris\\FCT\\5ºANO\\IS\\IS\\wolf_server\\wolf_server.csproj",
-        "packagesPath": "C:\\Users\\irisp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\irisp\\Desktop\\iris\\FCT\\5ºANO\\IS\\IS\\wolf_server\\obj\\",
+        "projectPath": "D:\\joaom\\Documents\\Mestrado\\2º semestre\\IS\\wolf_server\\wolf_server.csproj",
+        "packagesPath": "C:\\Users\\joaom\\.nuget\\packages\\",
+        "outputPath": "D:\\joaom\\Documents\\Mestrado\\2º semestre\\IS\\wolf_server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\irisp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joaom\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -52,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

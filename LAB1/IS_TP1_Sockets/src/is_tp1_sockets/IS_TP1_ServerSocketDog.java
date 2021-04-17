@@ -20,16 +20,16 @@ import org.netbeans.xml.schema.updateschema.TPosition;
  *
  * @author adroc
  */
-public class IS_TP1_ServerSocketCow {
+public class IS_TP1_ServerSocketDog {
 
-    private static final int portServer = 4444;
+    private static final int portServer = 4446;
 
     /**
      * @param args the command line arguments
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        IS_TP1_ServerSocketCow server = new IS_TP1_ServerSocketCow();
+        IS_TP1_ServerSocketDog server = new IS_TP1_ServerSocketDog();
         server.run();
     }
 
@@ -44,7 +44,7 @@ public class IS_TP1_ServerSocketCow {
             BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             
             
-               System.out.println("success cow server");    
+               System.out.println("success dog server");    
                
                
                System.out.println("ready to read line");
@@ -56,38 +56,12 @@ public class IS_TP1_ServerSocketCow {
                
                System.out.println("deserialized message"); 
                
-               int[] free_places = new int[9];
-               
-               for(int i = 0; i < place.getPlace().size(); i++){
-                   if (place.getPlace().get(i).getGrass() > 0 && place.getPlace().get(i).isWolf() == false && place.getPlace().get(i).isObstacle() == false)
-                       free_places[i]=1;
-                   else free_places[i] = 0;
-               }  
-                Random rand = new Random();
-                int x = rand.nextInt(8);
-               
-               do{
-                   x= rand.nextInt(8);
-               }while(free_places[x]==0);
-               
-               place.getPlace().get(0).setPosition(place.getPlace().get(x).getPosition());
-               place.getPlace().get(0).setCow(true);
-                   
-              /* for (int i = 0; i < place.getPlace().size(); i++){
-                    if (place.getPlace().get(i).getGrass() > 0 && place.getPlace().get(i).isWolf() == false && place.getPlace().get(i).isObstacle() == false){
-                        place.getPlace().get(0).setPosition(place.getPlace().get(i).getPosition());
-                        place.getPlace().get(0).setCow(true);
-                        break;
-<<<<<<< Updated upstream
-                    }
-                    
-=======
-                    }               
->>>>>>> Stashed changes
-                }*/
-               
-                
-               
+               for (int i = 0; i < place.getPlace().size(); i++){
+                if (place.getPlace().get(i).isWolf() == true && place.getPlace().get(i).isCow() == false && place.getPlace().get(i).isObstacle() == false){
+                    place.getPlace().get(0).setPosition(place.getPlace().get(i).getPosition());
+                    place.getPlace().get(0).setDog(true);
+                }
+            }
                
                System.out.println("calculated place");
                String s = MessageManagement.createPlaceStateContent(place);//serialize
@@ -95,7 +69,7 @@ public class IS_TP1_ServerSocketCow {
                out.println(s);
                //out.println();
               
-               System.out.println("sent cow");  
+               System.out.println("sent dog");  
                client.close();
                   
             }
@@ -103,7 +77,7 @@ public class IS_TP1_ServerSocketCow {
             
 
         }catch(IOException e){
-            System.out.println("fail cow server");
+            System.out.println("fail dog server");
         }
        
     }
